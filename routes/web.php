@@ -14,9 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::view('/', 'welcome')->name('Index');
 
 // Auth
 Route::view('/login', 'auth.login')->name('login')->middleware('guest');
@@ -25,6 +23,10 @@ Route::view('/profile', 'user.profile')->name('User::profile')->middleware('auth
 Route::post('login', [AuthController::class, 'login'])->middleware('guest');
 Route::post('register', [AuthController::class, 'register'])->middleware('guest');
 Route::post('logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
+
+// Products
+Route::view('/products', 'products')->name('Products::index');
+Route::view('/product', 'product')->name('Product::profile');
 
 // Postman testing
 Route::get('token', function () {

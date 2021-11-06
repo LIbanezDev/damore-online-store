@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Exception;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -45,7 +45,7 @@ class AuthController extends Controller
             $usuario->save();
             return ['ok' => true];
         } catch (Exception $ex) {
-            return ['ok' => false, 'msg' => 'Email invalido.'];
+            return ['ok' => false, 'msg' => 'El email ya ha sido utilizado.'];
         }
     }
 }

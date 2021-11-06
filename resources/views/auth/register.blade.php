@@ -73,7 +73,7 @@
     btnRegister.classList.remove('is-loading');
     if(data.ok) return window.location.href = `/login?email=${body.email}`
     Swal.fire(
-    'Good job!',
+    'Hubo un error',
     data.msg,
     'error'
     )

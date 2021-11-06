@@ -26,7 +26,7 @@
                     <div class="field">
                         <label class="label" for="input-password">Contraseña</label>
                         <p class="control has-icons-left">
-                            <input required class="input" value="123456" type="password" name="password"
+                            <input required class="input" type="password" name="password"
                                    id="input-password"/>
                             <span class="icon is-small is-left">
                               <i class="fas fa-lock"></i>

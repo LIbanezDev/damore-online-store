@@ -3,24 +3,12 @@
     D'amore Store ~ Inicio
 @endsection
 @section('content')
-    <div class="content has-text-centered">
-        <h1>
-            @guest No estas autenticado @else {{Auth::user()->name}} @endguest
-        </h1>
-        <h2>
-            @auth
-                <a href="{{route('User::profile')}}"> Profile </a>
-                <form action="{{route('logout')}}" method="POST">
-                    @csrf
-                    <button class="button is-white" onclick="this.closest('form').submit()">
-                                <span class="fa fa-power-off has-text-danger">
-                                </span>
-                    </button>
-                </form>
-            @else
-                <a href="{{route('register')}}"> Registro </a> <hr/>
-                <a href="{{route('login')}}"> Login </a>
-            @endauth
-        </h2>
+    <div class="columns is-multiline content">
+        <div class="column is-12 has-text-centered">
+            <a href="{{route('Products::index')}}">
+                <img src="{{asset('assets/images/logo.png')}}" alt="">
+            </a>
+            <h1><a href="{{route('Products::index')}}">PRODUCTOS </a></h1>
+        </div>
     </div>
 @endsection
