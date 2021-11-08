@@ -57,11 +57,32 @@
                                 <span class="fa fa-home">
                                 </span>
                     </a>
+                </div>
+                <div class="navbar-item">
                     <button class="button is-white"
                             onclick="window.open('https://github.com/LIbanezDev/damore-online-store', '_blank');">
                                 <span class="fa fa-github">
                                 </span>
                     </button>
+                </div>
+                <div class="navbar-item">
+                    <div class="dropdown is-hoverable">
+                        <div class="dropdown-trigger">
+                            <button class="button is-white" aria-haspopup="true" aria-controls="dropdown-menu4">
+                                <span>Articulos</span>
+                                <span class="icon is-small">
+                                    <i class="fas fa-angle-down" aria-hidden="true"></i>
+                                  </span>
+                            </button>
+                        </div>
+                        <div class="dropdown-menu" id="dropdown-menu4" role="menu">
+                            <div class="dropdown-content">
+                                <div class="dropdown-item">
+                                    <p><a href="{{route('Products::index')}}">Todos </a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="navbar-end">
@@ -71,7 +92,7 @@
                             <p class="navbar-item"><strong>{{Auth::user()->name}}</strong></p>
                         </a>
                         @can('acceder a cpanel')
-                            <a href="{{route('cpanel')}}">
+                            <a href="{{route('Cpanel')}}">
                                 <p class="navbar-item"><strong>Panel</strong></p>
                             </a>
                         @endcan

@@ -53,21 +53,4 @@ class AuthController extends Controller
         }
     }
 
-    public function createRole(Request $request): RedirectResponse
-    {
-        $role = Role::create(['name' => $request->name]);
-        return back()->with('mensaje', 'Rol creado!');
-    }
-
-    public function createPermission(Request $request): RedirectResponse
-    {
-        Permission::create(['name' => $request->name]);
-        return back()->with('mensaje', 'Permiso creado!');
-    }
-
-    public function getCpanelView()
-    {
-        $permissions = Permission::all();
-        return view('auth.cpanel', compact('permissions'));
-    }
 }
