@@ -4,11 +4,9 @@
 @endsection
 @section('content')
     <div class="columns is-multiline is-centered">
-        <div class="column is-12">
-            <h2 class="title has-text-centered"> Login </h2>
-        </div>
-        <div class="column is-6">
+        <div class="column is-6 content">
             <div class="box">
+                <h3 class="has-text-centered"> Ingreso </h3>
                 <form id="form-login" autocomplete="off">
                     <div class="field">
                         <label class="label" for="input-email">Email</label>
@@ -16,7 +14,6 @@
                             <input required class="input" value="{{app('request')->input('email')}}" type="text"
                                    name="email"
                                    id="input-email"
-                                   placeholder="lucas@gmail.com"
                             >
                             <span class="icon is-small is-left">
                               <i class="fas fa-envelope"></i>

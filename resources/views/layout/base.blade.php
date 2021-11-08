@@ -10,10 +10,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link rel="shortcut icon" type="image/svg" href="{{asset('assets/images/icon.svg')}}"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <script src="https://kit.fontawesome.com/f0c1ebd83a.js" crossorigin="anonymous"></script>
     <title>@yield('title')</title>
-    <style media="screen">
+    <style>
         body {
             font-family: 'Inter', sans-serif;
         }
@@ -27,6 +28,7 @@
         .section {
             flex: 1;
         }
+        @yield('css')
     </style>
 </head>
 <body class="main">
@@ -68,6 +70,11 @@
                         <a href="{{route('User::profile')}}">
                             <p class="navbar-item"><strong>{{Auth::user()->name}}</strong></p>
                         </a>
+                        @can('acceder a cpanel')
+                            <a href="{{route('cpanel')}}">
+                                <p class="navbar-item"><strong>Panel</strong></p>
+                            </a>
+                        @endcan
                         <form action="{{route('logout')}}" method="POST">
                             @csrf
                             <button class="button is-white" onclick="this.closest('form').submit()">
@@ -96,7 +103,7 @@
 <footer class="footer mt-2">
     <div class="content has-text-centered">
         <p>
-            Footer nomas
+            D'amore Store Valparaiso
         </p>
     </div>
 </footer>

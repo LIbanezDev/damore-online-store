@@ -1,5 +1,5 @@
 @extends('layout.base')
-@section('titulo')
+@section('title')
     D'amore Store ~ Inicio
 @endsection
 @section('content')

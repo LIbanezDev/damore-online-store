@@ -4,42 +4,43 @@
 @endsection
 @section('content')
     <div class="columns is-multiline is-centered">
-        <div class="column is-12">
-            <h2 class="title has-text-centered"> Registro </h2>
-        </div>
-        <div class="column is-half is-6">
+        <div class="column is-half is-6 content">
             <div class="box">
+                <h3 class="has-text-centered"> Registro </h3>
                 <form id="form-register" autocomplete="off">
                     <div class="field">
                         <label class="label" for="input-name">Nombre</label>
-                        <div class="control">
-                            <div class="control">
-                                <input required class="input" type="text" name="name"
-                                       id="input-name">
-                            </div>
+                        <div class="control has-icons-left">
+                            <input required class="input" type="text" name="name"
+                                   id="input-name">
+                            <span class="icon is-small is-left">
+                              <i class="fas fa-user"></i>
+                            </span>
                         </div>
                     </div>
                     <div class="field">
                         <label class="label" for="input-email">Email</label>
-                        <div class="control">
-                            <div class="control">
-                                <input required class="input" type="text" name="email"
-                                       id="input-email">
-                            </div>
+                        <div class="control has-icons-left">
+                            <input required class="input" type="text" name="email"
+                                   id="input-email">
+                            <span class="icon is-small is-left">
+                              <i class="fas fa-envelope"></i>
+                            </span>
                         </div>
                     </div>
                     <div class="field">
                         <label class="label" for="input-password">Contraseña</label>
-                        <div class="control">
-                            <div class="control">
-                                <input required class="input" type="password" name="password" id="input-password">
-                            </div>
+                        <div class="control has-icons-left">
+                            <input required class="input" type="password" name="password" id="input-password">
+                            <span class="icon is-small is-left">
+                              <i class="fas fa-lock"></i>
+                            </span>
                         </div>
                     </div>
                     <div class="control">
                         <button class="button is-success" id="btn-register">
                         <span class="icon is-small">
-                          <i class="fas fa-save"></i>
+                          <i class="fas fa-share"></i>
                         </span>
                             <strong>Continuar</strong>
                         </button>
