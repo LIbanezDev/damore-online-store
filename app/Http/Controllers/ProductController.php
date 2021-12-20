@@ -21,12 +21,14 @@ class ProductController extends Controller
     {
         $data = $request->all();
         if (isset($data['categories'])) {
+
             return DB::table('products')
                 ->join('product_category', 'products.id', '=', 'product_category.product_id')
                 ->whereIn('product_category.category_id', array_map('intval', explode(',', $data['categories'])))->get();
-        } else {
+        } else if (isset($data['ids'])) {
             return Product::whereIn('id', array_map('intval', explode(',', $data['ids'])))->get();
         }
+        return Product::all();
     }
 
     public function getProductsView()

@@ -113,9 +113,9 @@
                             <a href="/productos/${p.id}"><strong>${p.name}</strong></a>
                         </div>
                         <div class="about">
-                            <div class="rating">${p.stock} unidades </div>
+                            <div class="rating">${p.stock === 0 ? `${p.stock} unidades` : 'Agotado!!!'}</div>
                             <div class="price">
-                                <h3>${p.price}</h3>
+                                <h3>$${p.price}</h3>
                             </div>
                         </div>
                     </div>
