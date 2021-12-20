@@ -94,8 +94,8 @@
             <div class="col" style="margin-right: 0px;">
                 <h5>D&#39;amore store</h5>
                 <ul>
-                    <li><a href="#">Quienes somos</a></li>
-                    <li><a href="#" style="color: rgb(210, 209, 209);">Redes sociales Instagram</a></li>
+                    <li><a href="/">Quienes somos</a></li>
+                    <li><a href="https://www.instagram.com/damore.store" style="color: rgb(210, 209, 209);">Redes sociales Instagram</a></li>
                 </ul>
                 <h5>Soporte</h5>
                 <ul>
