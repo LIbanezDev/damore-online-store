@@ -14,8 +14,9 @@ class ProductController extends Controller
 
     public function deleteProduct($id)
     {
-        $flight = User::find($id);
-        $flight->delete();
+        $p = Product::find($id);
+        DB::table('product_category')->where('product_id', $p->id)->delete();
+        $p->delete();
         return ['ok' => true];
     }
 

@@ -182,13 +182,22 @@
             reverseButtons: true
             }).then(async (result) => {
             if (result.isConfirmed) {
-            const {data} = await axios.delete(`/api/products/${id}`);
-            await swalWithBootstrapButtons.fire(
-                'Eliminado!',
-                data,
-                'success'
-            );
-            location.reload();
+                try {
+                    const {data} = await axios.delete(`/api/products/${id}`);
+                    await swalWithBootstrapButtons.fire(
+                        'Eliminado!',
+                        data,
+                        'success'
+                    );
+                    location.reload();
+                } catch (e) {
+                    swalWithBootstrapButtons.fire(
+                        'Error!',
+                        'El producto no puede ser eliminado si esta presente en ordenes de compra.',
+                        'warning'
+                    );
+                }
+
             }
         })
     }
