@@ -28,6 +28,7 @@ Route::get('users', [UsersController::class, 'getAll'])->name('User::getAll');
 
 Route::post('products', [ProductController::class, 'createProduct'])->name('Product::create');
 Route::get('products', [ProductController::class, 'getProducts'])->name('Product::getAll');
+Route::delete('products/{id}', [ProductController::class, 'deleteProduct'])->name('Product::delete');
 Route::post('orders', [OrderController::class, 'create'])->name('Order::create');
 Route::post('orders/{id}/status', [OrderController::class, 'updateStatus'])->name('Order::update');
 

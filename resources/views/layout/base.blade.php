@@ -32,7 +32,7 @@
 <header>
     <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
         <div class="container"><a class="navbar-brand logo" href="/">
-                <img src="{{asset('assets/images/logo.png')}}" width="100" height="30" class="d-inline-block align-top" alt="">
+                <img src="{{asset('assets/img/logo.jpg')}}" width="125" height="40" class="d-inline-block align-top" alt="">
             </a>
             <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span
                     class="navbar-toggler-icon"></span></button>
@@ -51,7 +51,7 @@
                                     </a>
                                 @endcan
                                 <a href="{{route('User::profile')}}" class="dropdown-item">
-                                    Mis ordenes
+                                    Mi perfil
                                 </a>
                                 <form method="POST" action="{{route('logout')}}">
                                     @csrf
@@ -102,11 +102,12 @@
                 </ul>
                 <h5>Soporte</h5>
                 <ul>
-                    <li style="margin-right: -13px;"><a href="#" style="margin-right: 0px;">Preguntas freguentes FAQ</a></li>
+                    <li style="margin-right: -13px;"><a href="{{route('Main::faq')}}" style="margin-right: 0px;">Preguntas freguentes FAQ</a></li>
                 </ul>
             </div>
             <div class="col" style="margin-top: 0px;margin-left: 0px;">
-                <p style="color: rgb(210, 209, 209);"><br />Se realizan entregas en puntos físicos entre Valparaíso y Viña del Mar. Si no puede acordar punto de entrega, se realizan envíos por Starken o chilexpress. <br /><br /></p>
+                <p style="color: rgb(210, 209, 209);"><br/>Se realizan entregas en puntos físicos entre Valparaíso y Viña del Mar. Si no puede acordar punto de entrega, se realizan
+                    envíos por Starken o chilexpress. <br/><br/></p>
             </div>
         </div>
     </div>

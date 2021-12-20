@@ -20,7 +20,7 @@
                         <form method="post" id="form-create" autocomplete="off">
                             @csrf
                             <div class="row p-4">
-                                <h3 class="title">Producto</h3>
+                                <h3 class="title">Crear Producto</h3>
                                 <div class="col-12 mb-3">
                                     <label class="form-label" for="product-name">Nombre</label>
                                     <input type="text" id="product-name" name="name" class="form-control item"/>
@@ -61,15 +61,28 @@
                                     <label class="form-label" for="product-info">Información</label>
                                     <textarea id="product-info"></textarea>
                                 </div>
-                                <div class="col-12">
+                                <div class="col-12" id="manage-products">
                                     <button class="btn btn-outline-primary d-block w-100" type="submit" id="btn-register">
                                         Guardar
                                     </button>
                                 </div>
                             </div>
                         </form>
+                        <div class="col-md-12 mt-4">
+                            <div class="products">
+                                <ul class="nav nav-tabs mb-3">
+                                    @foreach($categories as $c)
+                                        <li class="nav-item" onclick="tabClick({{$c->id}}, this)">
+                                            <a class="nav-link" href="#manage-products">{{ucfirst($c->name)}}</a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                                <ul id="products_list">
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col">
+                    <div class="col-md-6">
                         <div class="row">
                             <div class="col-12 mb-4">
                                 <form method="post" action="{{route('Provider::create')}}" autocomplete="off">
@@ -149,6 +162,54 @@
     const providerSelect = document.getElementById('product-provider');
     const categorySelect = document.getElementById('product-category');
     const formCreate = document.getElementById('form-create');
+    const productsList = document.getElementById('products_list');
+
+    const deleteProduct = (id) => {
+        const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+        confirmButton: 'btn btn-success',
+        cancelButton: 'btn btn-danger m-3'
+        },
+        buttonsStyling: false
+        })
+        swalWithBootstrapButtons.fire({
+            title: 'Estas seguro?',
+            text: "Esta accion no se puede revertir",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Si, eliminar producto',
+            cancelButtonText: 'No, cancelar',
+            reverseButtons: true
+            }).then(async (result) => {
+            if (result.isConfirmed) {
+            const {data} = await axios.delete(`/api/products/${id}`);
+            await swalWithBootstrapButtons.fire(
+                'Eliminado!',
+                data,
+                'success'
+            );
+            location.reload();
+            }
+        })
+    }
+
+    const tabClick = async (catId, tab) => {
+        for (const li of document.querySelectorAll("a.active")) {
+        li.classList.remove("active");
+        }
+        tab.classList.add('is-active');
+        const {data} = await axios.get(`/api/products?categories=${catId}`);
+        productsList.innerHTML = '';
+        data.forEach(p => {
+        productsList.innerHTML += `
+        <li class="is-size-4">
+            ${p.name} - Stock: ${p.stock}
+            <button class="btn is-danger" onclick="deleteProduct(${p.id})">
+                <i class="fas fa-trash text-danger"></i>
+            </button>
+        </li>`;
+        });
+    }
 
     formCreate.addEventListener('submit', async (evt) => {
     evt.preventDefault();

@@ -11,12 +11,18 @@ use Illuminate\Support\Facades\DB;
 class ProductController extends Controller
 {
 
-    public function getProducts(Request $request) {
-        $data = $request->all();
+    public function deleteProduct($id)
+    {
+        Product::destroy($id);
+        return ['ok' => true];
+    }
 
-        if(isset($data['categories'])) {
+    public function getProducts(Request $request)
+    {
+        $data = $request->all();
+        if (isset($data['categories'])) {
             return DB::table('products')
-                ->join('product_category', 'product_id', '=', 'product_category.product_id')
+                ->join('product_category', 'products.id', '=', 'product_category.product_id')
                 ->whereIn('product_category.category_id', array_map('intval', explode(',', $data['categories'])))->get();
         } else {
             return Product::whereIn('id', array_map('intval', explode(',', $data['ids'])))->get();
@@ -33,9 +39,7 @@ class ProductController extends Controller
     public function getProductView($name)
     {
         $p = Product::with(['categories', 'provider'])->where('name', '=', $name)->firstOrFail();
-        $related = DB::table('products')
-            ->join('product_category', 'product_id', '=', 'product_category.product_id')
-            ->where('product_category.category_id', $p->categories[0]->id)->where('products.id', '!=', $p->id)->get();
+        $related = DB::table('products')->limit(3)->get();
         return view('product', compact('p', 'related'));
     }
 

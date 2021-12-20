@@ -37,7 +37,7 @@ class CpanelController extends Controller
 
     public function getCpanelOrdersView()
     {
-        $orders = Order::with(['products', 'user'])->get();
+        $orders = Order::with(['products', 'user'])->orderBy('created_at', 'desc')->get();
         return view('cpanel.orders', compact('orders'));
     }
 

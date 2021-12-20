@@ -128,27 +128,27 @@
     })
 
     const tabClick = async (roleId, tab) => {
-    for (const li of document.querySelectorAll("a.active")) {
-    li.classList.remove("active");
-    }
-    tab.classList.add('is-active');
-    const {data:{users}} = await axios.get(`/api/roles/${roleId}/users`);
-    usersList.innerHTML = '';
-    users.forEach(user => {
-    usersList.innerHTML += `
-        <li class="is-size-4">
-            ${user.name} - ${user.email}
-            <button class="btn is-danger" onclick="deleteUser(${user.id})">
-                <i class="fas fa-trash text-danger"></i>
-            </button>
-        </li>`;
-        });
+        for (const li of document.querySelectorAll("a.active")) {
+        li.classList.remove("active");
+        }
+        tab.classList.add('is-active');
+        const {data:{users}} = await axios.get(`/api/roles/${roleId}/users`);
+        usersList.innerHTML = '';
+        users.forEach(user => {
+        usersList.innerHTML += `
+            <li class="is-size-4">
+                ${user.name} - ${user.email}
+                <button class="btn is-danger" onclick="deleteUser(${user.id})">
+                    <i class="fas fa-trash text-danger"></i>
+                </button>
+            </li>`;
+            });
     }
     const deleteUser = async (userId) => {
         const swalWithBootstrapButtons = Swal.mixin({
         customClass: {
         confirmButton: 'btn btn-success',
-        cancelButton: 'btn btn-danger'
+        cancelButton: 'btn btn-danger m-3'
         },
         buttonsStyling: false
         })

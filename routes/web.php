@@ -30,7 +30,8 @@ Route::middleware(['guest'])->group(function () {
 
 Route::post('register', [AuthController::class, 'registerClient'])->name('registerClient');
 Route::middleware(['auth'])->group(function () {
-    Route::view('profile', 'user.profile')->name('User::profile');
+    Route::get('profile', [UsersController::class, 'getProfileView'])->name('User::profile');
+    Route::post('profile', [UsersController::class, 'updateUser'])->name('User::update');
     Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 });
 
@@ -61,6 +62,7 @@ Route::middleware(['can:acceder a cpanel'])->group(function () {
 // Products
 Route::get('/productos', [ProductController::class, 'getProductsView'])->name('Products::index');
 Route::get('/productos/{name}', [ProductController::class, 'getProductView'])->name('Products::getOne');
+Route::view('/preguntas-frecuentes', 'faq')->name('Main::faq');
 Route::view('/carrito', 'shopping_cart')->name('ShoppingCart::index');
 Route::view('/nosotros', 'about_us')->name('Main::about_us');
 Route::view('/confirmar-pago', 'payment_page')->name('Main::confirm_payment');

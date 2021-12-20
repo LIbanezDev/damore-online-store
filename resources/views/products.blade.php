@@ -59,12 +59,18 @@
                                     @foreach($products as $p)
                                         <div class="col-12 col-md-6 col-lg-4">
                                             <div class="clean-product-item">
-                                                <div class="image"><a href="{{route('Products::getOne', ['name' => $p->name])}}"><img class="img-fluid d-block mx-auto"
-                                                                                                                                      src="{{$p->profile_image}}"></a></div>
+                                                <div class="image"><a href="{{route('Products::getOne', ['name' => $p->name])}}">
+                                                        <img class="img-fluid d-block mx-auto" src="{{$p->profile_image}}"></a></div>
                                                 <div class="product-name"><a href="{{route('Products::getOne', ['name' => $p->name])}}">
                                                         <strong>{{$p->name}}</strong></a></div>
                                                 <div class="about">
-                                                    <div class="rating">{{$p->stock}} unidades</div>
+                                                    <div class="rating">
+                                                        @if($p->stock > 0)
+                                                            {{$p->stock}} unidades
+                                                        @else
+                                                            Agotado!!!
+                                                        @endif
+                                                    </div>
                                                     <div class="price">
                                                         <h3>${{$p->price}}</h3>
                                                     </div>
@@ -95,8 +101,27 @@
 
         const {data} = await axios.get(`/api/products?categories=${filtros.toString()}`)
 
-        console.log(data);
+        productsContainer.innerHTML = '';
 
+        data.forEach(p => {
+            productsContainer.innerHTML += `
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="clean-product-item">
+                        <div class="image"><a href="/productos/${p.id}">
+                                <img class="img-fluid d-block mx-auto" src="${p.profile_image}"></a></div>
+                        <div class="product-name">
+                            <a href="/productos/${p.id}"><strong>${p.name}</strong></a>
+                        </div>
+                        <div class="about">
+                            <div class="rating">${p.stock} unidades </div>
+                            <div class="price">
+                                <h3>${p.price}</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        })
 
     }
 

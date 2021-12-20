@@ -26,8 +26,15 @@
                                     <div class="text">
                                         {!! $p->description !!}
                                     </div>
-                                    <p>Quedan {{$p->stock}} unidades! </p>
-                                    <button class="btn btn-primary" type="button" onclick="addToCart({{$p->id}})">
+                                    <p>
+                                        @if($p->stock > 0)
+                                            Quedan {{$p->stock}} unidades!
+                                        @else
+                                            El producto está agotado! :(
+                                        @endif
+                                    </p>
+                                    <button class="btn btn-primary" {{$p->stock == 0 ? 'disabled' : ''}}
+                                            type="button" onclick="addToCart({{$p->id}})">
                                         <i class="fas fa-cart-plus"></i> Añadir al carrito
                                     </button>
                                 </div>
@@ -41,8 +48,8 @@
                                 @foreach($related as $r)
                                     <div class="col-sm-6 col-lg-4">
                                         <div class="clean-related-item">
-                                            <div class="image"><a href="#"><img class="img-fluid d-block mx-auto"
-                                                                                src="{{$r->profile_image}}"></a></div>
+                                            <div class="image"><a href="{{route('Products::getOne', ['name' => $r->name])}}">
+                                                    <img class="img-fluid d-block mx-auto" src="{{$r->profile_image}}"></a></div>
                                             <div class="related-name"><a href="#">{{$r->name}}</a>
                                                 <h4>${{$r->price}}</h4>
                                             </div>

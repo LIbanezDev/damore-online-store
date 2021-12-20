@@ -46,24 +46,24 @@
                             <h3 class="title mt-2">Confirma tus datos de contacto</h3>
                             <div class="col-sm-6">
                                 <div class="mb-3"><label class="form-label" for="rut">Rut</label>
-                                    <input class="form-control" type="text" id="rut"
+                                    <input class="form-control" type="text" id="rut" required
                                            placeholder="Sin puntos ni guión" name="rut" value="{{Auth::user()->rut ?? ''}}" {{ Auth::check() ? 'disabled' : ''}}></div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="mb-3"><label class="form-label" for="name">Nombre</label>
-                                    <input class="form-control" type="text" id="name"
+                                    <input class="form-control" type="text" id="name" required
                                            placeholder="Nombre y apellido" name="name" value="{{Auth::user()->name ?? ''}}" {{ Auth::check() ? 'disabled' : ''}}>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <label class="form-label" for="email">Correo electrónico</label>
-                                <input class="form-control" type="text" id="email"
+                                <input class="form-control" type="text" id="email" required
                                        placeholder="usuario@gmail.com" name="email" value="{{Auth::user()->email ?? ''}}">
 
                             </div>
                             <div class="col-sm-6">
                                 <label class="form-label" for="address">Dirección de entrega</label>
-                                <input class="form-control" type="text" id="address" placeholder="Comuna, Dirección"
+                                <input class="form-control" type="text" id="address" required placeholder="Comuna, Dirección"
                                        name="address" value="{{Auth::user()->default_shipping_address ?? ''}}">
 
                             </div>
@@ -75,7 +75,7 @@
                         </div>
                         <div class="mb-3 mt-3">
                             <label for="comprobante" class="form-label">Comprobante de transferencia</label>
-                            <input id="comprobante" class="form-control" type="file" name="file">
+                            <input id="comprobante" class="form-control" type="file" name="file" required>
                         </div>
                         <div class="col-sm-12">
                             <div class="mb-3">
@@ -111,7 +111,6 @@
         products.forEach(p => {
             formData.append('products[]', JSON.stringify(p));
         })
-        if({{Auth::check()}} === 1) formData.append('user_id', {{Auth::user()->id}});
         formData.append('name', nameInput.value);
         formData.append('rut', emailInput.value);
         formData.append('email', emailInput.value);
