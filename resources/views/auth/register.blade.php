@@ -3,61 +3,66 @@
     D'amore ~ Registro
 @endsection
 @section('content')
-    <div class="columns is-multiline is-centered">
-        <div class="column is-half is-6 content">
-            <div class="box">
-                <h3 class="has-text-centered"> Registro </h3>
+    <div class="page login-page">
+        <section class="clean-block clean-form dark">
+            <div class="container">
+                <div class="block-heading">
+                    <h2 class="text-info">Registro</h2>
+                </div>
                 <form id="form-register" autocomplete="off">
-                    <div class="field">
-                        <label class="label" for="input-name">Nombre</label>
-                        <div class="control has-icons-left">
-                            <input required class="input" type="text" name="name"
-                                   id="input-name">
-                            <span class="icon is-small is-left">
-                              <i class="fas fa-user"></i>
-                            </span>
-                        </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="input-rut">Rut sin puntos ni guión</label>
+                        <input required
+                               class="form-control item" type="text"
+                               name="rut"
+                               id="input-rut">
                     </div>
-                    <div class="field">
-                        <label class="label" for="input-email">Email</label>
-                        <div class="control has-icons-left">
-                            <input required class="input" type="text" name="email"
-                                   id="input-email">
-                            <span class="icon is-small is-left">
-                              <i class="fas fa-envelope"></i>
-                            </span>
-                        </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="input-name">Nombre</label>
+                        <input required
+                               class="form-control item" type="text"
+                               name="name"
+                               id="input-name">
                     </div>
-                    <div class="field">
-                        <label class="label" for="input-password">Contraseña</label>
-                        <div class="control has-icons-left">
-                            <input required class="input" type="password" name="password" id="input-password">
-                            <span class="icon is-small is-left">
-                              <i class="fas fa-lock"></i>
-                            </span>
-                        </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="input-email">Email</label>
+                        <input required
+                               class="form-control item" value="{{app('request')->input('email')}}" type="email"
+                               name="email"
+                               id="input-email">
                     </div>
-                    <div class="control">
-                        <button class="button is-success" id="btn-register">
-                        <span class="icon is-small">
-                          <i class="fas fa-share"></i>
-                        </span>
-                            <strong>Continuar</strong>
-                        </button>
+                    <div class="mb-3">
+                        <label class="form-label" for="input-password">Contraseña</label>
+                        <input class="form-control"
+                               required type="password" name="password"
+                               id="input-password"
+                        >
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="input-address">Dirección de envío</label>
+                        <input required
+                               class="form-control item" type="text"
+                               name="address"
+                               id="input-address">
+                    </div>
+                    <div class="mb-3">
+                        <button class="btn btn-primary" type="submit" id="btn-register">Guardar</button>
+                    </div>
+                    <div class="d-flex justify-content-end">
+                        <a class="btn btn-outline-primary btn-sm" href="{{route('login')}}">
+                            Login
+                        </a>
                     </div>
                 </form>
-                <div class="has-text-right">
-                    <a href="{{route('login')}}">
-                        <strong>Login</strong>
-                    </a>
-                </div>
             </div>
-        </div>
+        </section>
     </div>
 @endsection
 @section('javascript')
     const formRegister = document.getElementById('form-register');
     const nameInput = document.getElementById('input-name');
+    const addressInput = document.getElementById('input-address');
+    const rutInput = document.getElementById('input-rut');
     const emailInput = document.getElementById('input-email');
     const passwordInput = document.getElementById('input-password');
     const btnRegister = document.getElementById('btn-register');
@@ -66,9 +71,11 @@
     evt.preventDefault();
     btnRegister.classList.add('is-loading');
     const body = {
-    name: nameInput.value,
-    email: emailInput.value,
-    password: passwordInput.value
+        name: nameInput.value,
+        email: emailInput.value,
+        password: passwordInput.value,
+        rut: rutInput.value,
+        address: addressInput.value
     }
     const {data} = await axios.post('/register', body);
     btnRegister.classList.remove('is-loading');

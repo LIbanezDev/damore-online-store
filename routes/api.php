@@ -1,6 +1,10 @@
 <?php
 
 use App\Http\Controllers\CpanelController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\RolesController;
+use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,11 +18,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('roles', [CpanelController::class, 'getRoles'])->name('Rol::getAll');
-Route::get('roles/{id?}', [CpanelController::class, 'getRole'])->name('Rol::getOne');
-Route::post('roles', [CpanelController::class, 'createRole'])->name('Rol::create');
+Route::get('roles/{id}/users', [RolesController::class, 'getRole'])->name('Users::getByRole');
+Route::get('roles', [RolesController::class, 'getRoles'])->name('Rol::getAll');
+Route::get('roles/{id?}', [RolesController::class, 'getRole'])->name('Rol::getOne');
+Route::post('roles', [RolesController::class, 'createRole'])->name('Rol::create');
 
-// TODO: implement authorization on api routes
+Route::delete('users/remove/{id}', [UsersController::class, 'removeUser'])->name('Users::remove');
+Route::get('users', [UsersController::class, 'getAll'])->name('User::getAll');
+
+Route::post('products', [ProductController::class, 'createProduct'])->name('Product::create');
+Route::get('products', [ProductController::class, 'getProducts'])->name('Product::getAll');
+Route::post('orders', [OrderController::class, 'create'])->name('Order::create');
+Route::post('orders/{id}/status', [OrderController::class, 'updateStatus'])->name('Order::update');
+
 
 /*Route::middleware(['can:acceder a cpanel'])->group(function () {
     Route::middleware(['can:gestionar roles y permisos'])->group(function () {

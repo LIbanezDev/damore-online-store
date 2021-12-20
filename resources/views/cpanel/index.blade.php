@@ -3,41 +3,46 @@
     D'amore Store ~ CPanel
 @endsection
 @section('content')
-    <div class="columns is-multiline">
-        <div class="column is-12 content has-text-centered">
-            <h1> PANEL DE ADMINISTRACION </h1>
-            <h3 class="has-text-grey-light"> {{@Auth::user()->name}} tiene los siguientes permisos:
-                @foreach(@Auth::user()->getAllPermissions() as $permission)
-                    {{$permission->name}},
-                @endforeach
-            </h3>
-        </div>
-        <div class="column is-12">
-            <div class="columns is-multiline">
-                @can('gestionar roles y permisos')
-                    <div class="column is-4-desktop is-12-tablet">
-                        <div class="content has-text-centered">
-                            <h2><a href="{{route('Cpanel::roles')}}"> Roles </a></h2>
+    <main class="page">
+        <section class="clean-block features">
+            <div class="container">
+                <div class="block-heading">
+                    <h2 class="text-info">Panel de Administración</h2>
+                    <p>Seleccione qué desea gestionar.</p>
+                </div>
+                <div class="row justify-content-center">
+                    @can('gestionar roles y permisos')
+                        <div class="col-md-5 feature-box"><i class="fa fa-lock icon"></i>
+                            <h4><a href="{{route('Cpanel::roles')}}" class="text-decoration-none text-black">Roles y Permisos</a></h4>
+                            <p>Maneje los roles y permisos para autorizar a usuarios administradores a realizar diferentes tareas.</p>
                         </div>
-                    </div>
-                @endcan
-                @can('gestionar usuarios administradores')
-                    <div class="column is-4-desktop is-12-tablet">
-                        <div class="content has-text-centered">
-                            <h2><a href="{{route('Cpanel::usuarios')}}"> Usuarios </a></h2>
+                    @endcan
+                    @can('gestionar usuarios administradores')
+                        <div class="col-md-5 feature-box"><i class="fa fa-users icon"></i>
+                            <h4><a href="{{route('Cpanel::usuarios')}}" class="text-decoration-none text-black"> Usuarios administradores </a> </h4>
+                            <p>Cree nuevos usuarios para administrar la aplicación web.</p>
                         </div>
-                    </div>
-                @endcan
-                @if(Gate::check('crear productos') || Gate::check('modificar productos') || Gate::check('eliminar productos'))
-                    <div class="column is-4-desktop is-12-tablet">
-                        <div class="content has-text-centered">
-                            <h2><a href="{{route('Cpanel::productos')}}"> Productos </a></h2>
+                    @endcan
+                    @if(Gate::check('crear productos') || Gate::check('modificar productos') || Gate::check('eliminar productos'))
+                        <div class="col-md-5 feature-box"><i class="fa fa-boxes icon"></i>
+                            <h4><a href="{{route('Cpanel::productos')}}" class="text-decoration-none text-black"> Productos </a> </h4>
+                            <p>Administrar los productos del inventario que se presentan en el sitio.</p>
                         </div>
-                    </div>
-                @endif
+                    @endif
+                    @can('gestionar pedidos')
+                        <div class="col-md-5 feature-box"><i class="fas fa-truck-loading icon"></i>
+                            <h4>
+                                <a href="{{route('Cpanel::ordenes')}}" class="text-decoration-none text-black">
+                                    Ordenes
+                                </a>
+                            </h4>
+                            <p>Gestione las ordenes hechas por los clientes.</p>
+                        </div>
+                    @endcan
+                </div>
             </div>
-        </div>
-    </div>
+        </section>
+    </main>
 @endsection
 @section('javascript')
 

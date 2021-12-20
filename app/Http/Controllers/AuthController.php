@@ -41,16 +41,18 @@ class AuthController extends Controller
             $data = $request->all();
             $usuario = new User();
             $usuario->name = $data['name'];
+            $usuario->rut = $data['rut'];
+            $usuario->default_shipping_address = $data['address'] ?? null;
+            $usuario->billing_address = $data['address'] ?? null;
             $usuario->email = $data['email'];
             $usuario->email_verified_at = now();
             $usuario->remember_token = Str::random(10);
             $usuario->password = Hash::make($data['password']);
+            $usuario->assignRole($data['roles'] ?? 'cliente');
             $usuario->save();
-            $usuario->assignRole('client');
             return ['ok' => true];
         } catch (Exception $ex) {
             return ['ok' => false, 'msg' => 'El email ya ha sido utilizado.'];
         }
     }
-
 }

@@ -3,57 +3,44 @@
     D'amore ~ Login
 @endsection
 @section('content')
-    <div class="columns is-multiline is-centered">
-        <div class="column is-6 content">
-            <div class="box">
-                <h3 class="has-text-centered"> Ingreso </h3>
+    <div class="page login-page">
+        <section class="clean-block clean-form dark">
+            <div class="container">
+                <div class="block-heading">
+                    <h2 class="text-info">Login</h2>
+                </div>
                 <form id="form-login" autocomplete="off">
-                    <div class="field">
-                        <label class="label" for="input-email">Email</label>
-                        <p class="control has-icons-left">
-                            <input required class="input" value="{{app('request')->input('email')}}" type="text"
-                                   name="email"
-                                   id="input-email"
-                            >
-                            <span class="icon is-small is-left">
-                              <i class="fas fa-envelope"></i>
-                            </span>
-                        </p>
+                    <div class="mb-3">
+                        <label class="form-label" for="input-email">Email</label>
+                        <input required
+                               class="form-control item" value="{{app('request')->input('email')}}" type="email"
+                               name="email"
+                               id="input-email">
                     </div>
-                    <div class="field">
-                        <label class="label" for="input-password">Contraseña</label>
-                        <p class="control has-icons-left">
-                            <input required class="input" type="password" name="password"
-                                   id="input-password"/>
-                            <span class="icon is-small is-left">
-                              <i class="fas fa-lock"></i>
-                            </span>
-                        </p>
+                    <div class="mb-3">
+                        <label class="form-label" for="input-password">Password</label>
+                        <input class="form-control"
+                               required type="password" name="password"
+                               id="input-password"
+                        >
                     </div>
-                    <div class="field">
-                        <label class="checkbox">
-                            <input type="checkbox" id="checkbox-remember">
-                            Mantener sesión iniciada
-                        </label>
+                    <div class="mb-3">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="checkbox-remember">
+                            <label class="form-check-label" for="checkbox-remember">Remember me</label>
+                        </div>
                     </div>
-                    <div class="control">
-                        <button class="button is-success" id="btn-login">
-                        <span class="icon is-small">
-                          <i class="fas fa-sign-in-alt"></i>
-                        </span>
-                            <strong>
-                                Ingresar
-                            </strong>
-                        </button>
+                    <div class="mb-3">
+                        <button class="btn btn-primary" id="btn-login">Ingresar</button>
+                    </div>
+                    <div class="d-flex justify-content-end">
+                        <a class="btn btn-outline-primary btn-sm" href="{{route('register')}}">
+                            Registro
+                        </a>
                     </div>
                 </form>
-                <div class="has-text-right">
-                    <a href="{{route('register')}}">
-                        <strong>Registro</strong>
-                    </a>
-                </div>
             </div>
-        </div>
+        </section>
     </div>
 @endsection
 @section('javascript')
