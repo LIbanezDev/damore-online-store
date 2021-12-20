@@ -86,12 +86,9 @@
     <div class="container">
         <div class="row">
             <div class="col" style="margin-right: 0px;">
-                <h5>Categorías</h5>
+                <h5>Productos</h5>
                 <ul>
-                    <li><a href="#">Matizadores</a></li>
-                    <li><a href="#" style="color: rgb(210, 209, 209);">Cremas</a></li>
-                    <li><a href="#" style="color: rgb(210, 209, 209);">Máscara de hidratación</a></li>
-                    <li><a href="#" style="color: rgb(210, 209, 209);">Aceites</a></li>
+                    <li><a href="#">Lista de productos</a></li>
                 </ul>
             </div>
             <div class="col" style="margin-right: 0px;">
