@@ -242,30 +242,31 @@
                         Modificar
                     </button>
                 </div>
+            </div>
         </li>`;
         });
     }
 
     formCreate.addEventListener('submit', async (evt) => {
-    evt.preventDefault();
-    let formData = new FormData();
-    formData.append('file', document.getElementById('product-img').files[0]);
-    formData.append('name', nameInput.value);
-    formData.append('stock', stockInput.value);
-    formData.append('price', priceInput.value);
-    formData.append('weight', weightInput.value);
-    formData.append('description', tinymce.activeEditor.getContent());
-    formData.append('category', categorySelect.value);
-    formData.append('provider', providerSelect.value);
-    const {data} = await axios.post('/api/products', formData);
-    if (data.ok) {
-    Swal.fire(
-    'Exito',
-    'Se ha creado el nuevo producto ' + nameInput.value,
-    'success'
-    )
-    formCreate.reset();
-    }
+        evt.preventDefault();
+        let formData = new FormData();
+        formData.append('file', document.getElementById('product-img').files[0]);
+        formData.append('name', nameInput.value);
+        formData.append('stock', stockInput.value);
+        formData.append('price', priceInput.value);
+        formData.append('weight', weightInput.value);
+        formData.append('description', tinymce.activeEditor.getContent());
+        formData.append('category', categorySelect.value);
+        formData.append('provider', providerSelect.value);
+        const {data} = await axios.post('/api/products', formData);
+        if (data.ok) {
+            Swal.fire(
+            'Exito',
+            'Se ha creado el nuevo producto ' + nameInput.value,
+            'success'
+            )
+            formCreate.reset();
+        }
     })
 
     categorySelect.addEventListener('click', async () => {

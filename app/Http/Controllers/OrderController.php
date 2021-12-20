@@ -11,8 +11,14 @@ class OrderController extends Controller
     public function updateStatus($id, Request $request) {
         try {
             $data = $request->all();
-            $order = Order::where('id', $id)->first();
+            $order = Order::with('products')->where('id', $id)->first();
             $order->status = $data['status'];
+            if ($data['status'] == 'rechazada') {
+                foreach ($order->products as $p) {
+                    $p->stock = $p->stock + $p->pivot->amount;
+                    $p->save();
+                }
+            }
             $order->save();
             return ['ok' => true];
         } catch (Exception $ex) {
