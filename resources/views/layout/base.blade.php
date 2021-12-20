@@ -88,7 +88,7 @@
             <div class="col" style="margin-right: 0px;">
                 <h5>Productos</h5>
                 <ul>
-                    <li><a href="#">Lista de productos</a></li>
+                    <li><a href="{{route('Products::index')}}">Lista de productos</a></li>
                 </ul>
             </div>
             <div class="col" style="margin-right: 0px;">
