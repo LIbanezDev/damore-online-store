@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UsersController
 {
@@ -14,7 +15,7 @@ class UsersController
         $user->email = $data['email'];
         $user->billing_address = $data['address'];
         $user->default_shipping_address = $data['address'];
-        $user->password = $data['password'] == null ? $user->password : $data['password'];
+        $user->password = $data['password'] == null ? $user->password : Hash::make($data['password']);
         $user->save();
         return back();
     }
