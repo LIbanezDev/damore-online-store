@@ -126,7 +126,7 @@
                                         <div class="col-12 mb-3">
                                             <div class="row">
                                                 <div class="col-9">
-                                                    <label class="form-label" for="provider-name">Nombre</label>
+                                                    <label class="form-label" for="name">Nombre</label>
                                                     <input type="text" id="category-name" name="name" class="form-control item"/>
                                                 </div>
                                                 <div class="col">
@@ -163,6 +163,20 @@
     const categorySelect = document.getElementById('product-category');
     const formCreate = document.getElementById('form-create');
     const productsList = document.getElementById('products_list');
+
+    const updateStock = async (pId) => {
+        const inputValue = document.getElementById(`p-${pId}`)
+        const {data} = await axios.patch(`/api/products/${pId}`, {
+            stock: inputValue.value
+        })
+        if(data.ok) {
+            Swal.fire(
+                'Exito',
+                'El stock del producto se ha actualizado correctamente',
+                'success'
+            )
+        }
+    }
 
     const deleteProduct = (id) => {
         const swalWithBootstrapButtons = Swal.mixin({
@@ -212,10 +226,22 @@
         data.forEach(p => {
         productsList.innerHTML += `
         <li class="is-size-4">
-            ${p.name} - Stock: ${p.stock}
-            <button class="btn is-danger" onclick="deleteProduct(${p.id})">
-                <i class="fas fa-trash text-danger"></i>
+            ${p.name}
+            <button class="btn" onclick="deleteProduct(${p.id})">
+                <i class="fas fa-trash text-danger mr-3"></i>
             </button>
+            <div class="row">
+                <div class="col-md-3">
+                    <label for="p-${p.id}"> <h5>  Stock:  </h5></label>
+                </div>
+                <div class="col-md-5">
+                    <input type="number" id="p-${p.id}" value="${p.stock}" min="0" class="form-control item">
+                </div>
+                <div class="col">
+                    <button class="btn btn-warning" onclick="updateStock(${p.id})">
+                        Modificar
+                    </button>
+                </div>
         </li>`;
         });
     }

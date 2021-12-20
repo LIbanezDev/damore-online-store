@@ -12,6 +12,14 @@ use Illuminate\Support\Facades\DB;
 class ProductController extends Controller
 {
 
+    public function updateStock($id, Request $request) {
+        $data = $request->all();
+        $p = Product::find($id);
+        $p->stock = (int) $data['stock'];
+        $p->save();
+        return ['ok' => true];
+    }
+
     public function deleteProduct($id)
     {
         $p = Product::find($id);

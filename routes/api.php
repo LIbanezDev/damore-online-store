@@ -27,6 +27,7 @@ Route::delete('users/remove/{id}', [UsersController::class, 'removeUser'])->name
 Route::get('users', [UsersController::class, 'getAll'])->name('User::getAll');
 
 Route::post('products', [ProductController::class, 'createProduct'])->name('Product::create');
+Route::patch('products/{id}', [ProductController::class, 'updateStock'])->name('Product::update');
 Route::get('products', [ProductController::class, 'getProducts'])->name('Product::getAll');
 Route::delete('products/{id}', [ProductController::class, 'deleteProduct'])->name('Product::delete');
 Route::post('orders', [OrderController::class, 'create'])->name('Order::create');
